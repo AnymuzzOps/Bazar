@@ -2,7 +2,6 @@ import { products } from "./products.js";
 import { instagramLink, whatsappLink } from "./config.js";
 import { createSelections, money, orderMessage, stockOf, subtotal } from "./cart.js";
 import { mountCarousel } from "./carousel.js";
-import { mountCatalog } from "./catalog.js";
 import { button, element } from "./dom.js";
 
 const selections = createSelections(products);
@@ -275,7 +274,7 @@ function openProduct(product) {
     back.addEventListener("click", openFavorites);
     actions.append(back);
   }
-  info.append(actions, element("p", "shop-small", "Catálogo e imágenes de demostración."));
+  info.append(actions, element("p", "shop-small", "Prenda e imágenes de demostración."));
   layout.append(gallery(product), info);
   panel.append(layout);
 }
@@ -307,7 +306,7 @@ function cartContent() {
   const items = selections.cartItems();
   const wrapper = element("div", "shop-cart");
   if (!items.length) {
-    wrapper.append(element("p", "shop-empty", "Tu carrito está vacío. Explora el catálogo para agregar prendas."));
+    wrapper.append(element("p", "shop-empty", "Tu carrito está vacío. Explora las colecciones para agregar prendas."));
     return wrapper;
   }
 
@@ -374,7 +373,7 @@ function cartContent() {
   field.value = message;
   field.readOnly = true;
   field.rows = 4;
-  const label = element("label", "catalog-field", "Mensaje de consulta");
+  const label = element("label", "shop-field", "Mensaje de consulta");
   label.append(field);
   const copy = button("Copiar consulta", "shop-button shop-button--outline");
   copy.addEventListener("click", () => copyMessage(field));
@@ -405,29 +404,12 @@ for (const host of document.querySelectorAll("[data-carousel]")) {
   mountCarousel(host, subset, makeCard);
 }
 
-const catalogHost = document.querySelector("[data-catalog], [data-catalog-controls]");
-const catalogResults = document.querySelector("[data-catalog-results]");
-const catalog = catalogHost && mountCatalog(catalogHost, products, makeCard, catalogResults || catalogHost);
-const catalogSection = document.getElementById("catalogo");
-
-for (const trigger of document.querySelectorAll("[data-open]")) {
-  trigger.addEventListener("click", event => {
-    const kind = trigger.dataset.open;
-    if (kind === "favorites") openFavorites();
-    if (kind === "cart") openCart();
-    if (kind === "search" && catalog) {
-      catalogSection?.scrollIntoView();
-      catalog.focusSearch();
-    }
-    if (["favorites", "cart", "search"].includes(kind)) event.preventDefault();
-  });
+for (const trigger of document.querySelectorAll('[data-open="favorites"]')) {
+  trigger.addEventListener("click", openFavorites);
 }
 
-for (const link of document.querySelectorAll("[data-condition], [data-unique]")) {
-  link.addEventListener("click", () => {
-    if (link.hasAttribute("data-unique")) catalog?.filterUnique();
-    else catalog?.filterState(link.dataset.condition);
-  });
+for (const trigger of document.querySelectorAll('[data-open="cart"]')) {
+  trigger.addEventListener("click", openCart);
 }
 
 for (const contact of document.querySelectorAll("[data-contact]")) {
