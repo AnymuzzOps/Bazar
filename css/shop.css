@@ -1,4 +1,4 @@
-/* Storefront catalogue, product cards and purchase inquiry. */
+/* Collection carousels, product cards and purchase inquiry. */
 .shop-button {
   display: inline-flex;
   min-height: 44px;
@@ -277,12 +277,7 @@
   scroll-snap-align: start;
 }
 
-.catalog-form {
-  display: grid;
-  gap: .9rem;
-}
-
-.catalog-field {
+.shop-field {
   display: grid;
   width: 100%;
   min-width: 0;
@@ -293,7 +288,7 @@
   font-weight: 650;
 }
 
-.catalog-field :is(input, select, textarea) {
+.shop-order-message {
   width: 100%;
   min-height: 44px;
   margin: 0;
@@ -303,73 +298,9 @@
   background: var(--ivory);
   color: var(--ink);
   font: 450 1rem/1.4 var(--sans);
+  resize: vertical;
 }
 
-.catalog-field select {
-  appearance: none;
-  padding-inline-end: 1.8rem;
-  background-image: linear-gradient(45deg, transparent 50%, #70432d 50%), linear-gradient(135deg, #70432d 50%, transparent 50%);
-  background-position: calc(100% - 14px) 52%, calc(100% - 9px) 52%;
-  background-repeat: no-repeat;
-  background-size: 5px 5px;
-}
-
-.catalog-filters {
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--cream);
-}
-
-.catalog-filters summary {
-  min-height: 44px;
-  padding: .72rem 1rem;
-  color: var(--espresso);
-  font-size: .9rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.catalog-fields,
-.catalog-actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.75rem), 1fr));
-  gap: .7rem;
-  padding: .1rem 1rem .9rem;
-}
-
-.catalog-actions {
-  grid-template-columns: 1fr;
-  align-items: center;
-}
-
-.catalog-actions .shop-button {
-  justify-self: start;
-}
-
-.catalog-checkbox {
-  display: flex;
-  min-height: 44px;
-  align-items: center;
-  gap: .4rem;
-  font-size: .9rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.catalog-checkbox input {
-  width: 1.15rem;
-  height: 1.15rem;
-  margin: 0;
-  accent-color: var(--espresso);
-}
-
-.catalog-count {
-  margin: 1.15rem 0 .6rem;
-  color: var(--muted);
-  font-size: .9rem;
-}
-
-.catalog-grid,
 .shop-favorites-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -624,10 +555,6 @@ body:has(.shop-dialog[open]) {
   font-size: 1.12rem;
 }
 
-.shop-order-message {
-  resize: vertical;
-}
-
 .shop-toast {
   position: fixed;
   z-index: 100;
@@ -649,10 +576,6 @@ body:has(.shop-dialog[open]) {
 }
 
 @media (max-width: 22rem) {
-  .catalog-grid {
-    gap: .45rem;
-  }
-
   .product-badges {
     inset: .35rem 3.2rem auto .35rem;
   }
@@ -696,13 +619,8 @@ body:has(.shop-dialog[open]) {
     gap: .85rem;
   }
 
-  .catalog-grid,
   .shop-favorites-grid {
     gap: .85rem;
-  }
-
-  .catalog-actions {
-    grid-template-columns: 1fr auto;
   }
 }
 
@@ -725,11 +643,9 @@ body:has(.shop-dialog[open]) {
     grid-column: auto;
   }
 
-  .shop-favorites-grid,
-  .catalog-grid {
+  .shop-favorites-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
 }
 
 @media (min-width: 64rem) {
@@ -737,12 +653,6 @@ body:has(.shop-dialog[open]) {
     grid-auto-columns: calc((100% - 3rem) / 4);
     gap: 1rem;
   }
-
-  .catalog-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
 }
 
 @media (prefers-reduced-motion: reduce) {

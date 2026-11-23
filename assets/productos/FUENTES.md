@@ -1,6 +1,6 @@
 # Imágenes de demostración
 
-Las imágenes de este catálogo ilustran prendas de ejemplo. Para publicar un inventario real, sustituye las imágenes y actualiza sus descripciones y estados en `js/products.js`.
+Las imágenes de las colecciones ilustran prendas de ejemplo. Para publicar un inventario real, sustituye las imágenes y actualiza sus descripciones y estados en `js/products.js`.
 
 Las fotografías de stock se procesaron para servirlas localmente en WebP. Consulta los términos de uso en la página de licencia correspondiente.
 
